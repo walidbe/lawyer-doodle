@@ -1,0 +1,3 @@
+[submodule "config-service/lawyer-doodle"]
+	path = config-service/lawyer-doodle
+	url = https://github.com/walidbe/lawyer-doodle.git
