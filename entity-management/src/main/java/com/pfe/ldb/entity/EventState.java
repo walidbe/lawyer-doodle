@@ -6,7 +6,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="eventStateEntity")
+@Table(name="eventState")
 public class EventState extends ModelEntity {
 	
 	@ManyToOne

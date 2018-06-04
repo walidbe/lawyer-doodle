@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="voteStateEntity")
+@Table(name="voteState")
 public class VoteStateEntity extends ModelEntity {
 
 	private String name;

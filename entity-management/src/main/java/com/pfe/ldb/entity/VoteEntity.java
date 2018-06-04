@@ -6,8 +6,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="voteEntity")
-public class VoteEntity {
+@Table(name="vote")
+public class VoteEntity extends ModelEntity{
 
 
 	private String name;
