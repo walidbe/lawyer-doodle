@@ -12,10 +12,10 @@ import org.springframework.context.annotation.Profile;
 
 @Configuration
 @EntityScan("com.pfe.ldb.entity")
+@Profile("dev")
 public class DatabaseServiceConfiguration {
 
 	@Bean
-	@Profile("dev")
 	public ServletRegistrationBean h2servletRegistration() {
 		ServletRegistrationBean registrationBean = new ServletRegistrationBean(new WebServlet());
 		registrationBean.addUrlMappings("/console/*");
@@ -23,7 +23,6 @@ public class DatabaseServiceConfiguration {
 	}
 
 	@Bean
-	@Profile("dev")
 	public Server h2Server() throws SQLException {
 		return Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "9091").start();
 	}
