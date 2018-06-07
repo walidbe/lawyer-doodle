@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="userAuthorities")
-public class UserAuthoritiesEntity extends ModelEntity {
+public class UserAuthoritiesEntity extends AbstractEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "userId")

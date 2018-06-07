@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="task")
-public class TaskEntity extends ModelEntity {
+public class TaskEntity extends AbstractEntity {
 
 
 	private String name;

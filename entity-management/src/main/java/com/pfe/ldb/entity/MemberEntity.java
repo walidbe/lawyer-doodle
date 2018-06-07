@@ -5,7 +5,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="member")
-public class MemberEntity extends ModelEntity {
+public class MemberEntity extends AbstractEntity {
 
 	private String firstName;
 	private String lastName;

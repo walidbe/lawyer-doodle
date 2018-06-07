@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="event")
-public class EventEntity extends ModelEntity {
+public class EventEntity extends AbstractEntity {
 
 
 	private String name;

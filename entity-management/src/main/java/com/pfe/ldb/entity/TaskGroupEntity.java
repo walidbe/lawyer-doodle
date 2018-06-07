@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="taskGroup")
-public class TaskGroupEntity extends ModelEntity {
+public class TaskGroupEntity extends AbstractEntity {
 
 	private String name;
 	private String description;

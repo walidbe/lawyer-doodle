@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="vote")
-public class VoteEntity extends ModelEntity{
+public class VoteEntity extends AbstractEntity{
 
 
 	private String name;

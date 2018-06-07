@@ -8,8 +8,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="suggestionEntity")
-public class SuggestionEntity extends ModelEntity {
+@Table(name="suggestion")
+public class SuggestionEntity extends AbstractEntity {
 	
 
 	private String name;

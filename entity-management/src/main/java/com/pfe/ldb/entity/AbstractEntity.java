@@ -12,7 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @MappedSuperclass
-public abstract class ModelEntity {
+public abstract class AbstractEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,7 +22,7 @@ public abstract class ModelEntity {
     @Temporal(TemporalType.DATE)
     private final Date createdDate;
     
-    public ModelEntity() {
+    public AbstractEntity() {
     	this.createdDate = new Date(Calendar.getInstance().getTime().getTime());
     }
 
