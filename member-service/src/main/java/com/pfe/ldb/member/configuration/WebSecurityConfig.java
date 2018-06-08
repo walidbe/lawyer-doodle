@@ -1,10 +1,17 @@
 package com.pfe.ldb.member.configuration;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.BeanIds;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.pfe.ldb.member.controller.path.PathURI;
 
@@ -12,12 +19,34 @@ import com.pfe.ldb.member.controller.path.PathURI;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+    private UserDetailsService userDetailsService;
 
 	  @Override
 	    protected void configure(HttpSecurity http) throws Exception {
+		  http.csrf().disable().authorizeRequests().anyRequest();
 	        http
 	                .authorizeRequests()
 	                    .antMatchers(PathURI.USER_REGISTER).permitAll();
 	                   
 	    }
+	  
+	  
+	  @Bean
+	    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+	        return new BCryptPasswordEncoder();
+	    }
+	  
+	  @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
+	   @Override
+	   public AuthenticationManager authenticationManagerBean() throws Exception {
+	       return super.authenticationManagerBean();
+	   }
+	  
+	  @Autowired
+	    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+	        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
+	    }
+	  
+	  
 }

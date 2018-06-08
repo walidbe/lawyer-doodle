@@ -12,7 +12,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.pfe.ldb.member.iservice.ISecurityService;
 import com.pfe.ldb.member.iservice.IUserService;
+import com.pfe.ldb.member.service.SecurityServiceImpl;
 import com.pfe.ldb.member.service.UserService;
 
 
@@ -29,14 +31,16 @@ public class MemberServiceConfiguration {
     public IUserService userService() {
     	return new UserService();
     }
+    
+    @Bean
+    public ISecurityService securityService() {
+    	return new SecurityServiceImpl();
+    }
 	
 	@Bean
 	public ModelMapper modelMapper() {
 	    return new ModelMapper();
 	}
 	
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+  
 }
