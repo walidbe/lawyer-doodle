@@ -18,12 +18,12 @@ import com.pfe.ldb.entity.UserEntity;
 import com.pfe.ldb.member.repository.RoleRepository;
 import com.pfe.ldb.member.repository.UserRepository;
 
-@Service
+
 public class UserDetailsServiceImpl implements UserDetailsService{
-    @Autowired
+    
     private UserRepository userRepository;
 
-	@Autowired RoleRepository roleRepository;
+	 RoleRepository roleRepository;
 
     @Override
     @Transactional(readOnly = true)

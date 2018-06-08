@@ -14,10 +14,10 @@ import com.pfe.ldb.member.iservice.IUserService;
 
 public class SecurityServiceImpl implements ISecurityService {
 
-	@Autowired
+	
 	AuthenticationManager authenticationManager;
 
-	@Autowired
+	
 	UserDetailsService  userDetailService;
 
 	@Override
@@ -30,6 +30,16 @@ public class SecurityServiceImpl implements ISecurityService {
             SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
         }
 
+	}
+
+	@Override
+	public String findLoggedInUsername() {
+		Object userDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();
+        if (userDetails instanceof UserDetails) {
+            return ((UserDetails)userDetails).getUsername();
+        }
+
+        return null;
 	}
 
 }
