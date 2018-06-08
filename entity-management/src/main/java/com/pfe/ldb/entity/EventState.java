@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="eventState")
-public class EventState extends ModelEntity {
+public class EventState extends AbstractEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "eventId")
