@@ -1,0 +1,15 @@
+spring:
+  application: 
+    name: zuul-service
+  
+  profiles:
+    active: dev
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9999/eureka/
+ 
+
+server:
+  port: 5555
