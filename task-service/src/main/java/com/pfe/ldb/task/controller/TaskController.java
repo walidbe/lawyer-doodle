@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pfe.ldb.core.protogest.task.Task;
+import com.pfe.ldb.core.protogest.task.TaskGroup;
 import com.pfe.ldb.task.controller.path.PathURI;
 import com.pfe.ldb.task.iservice.ITaskService;
 
@@ -25,6 +26,14 @@ public class TaskController {
         return tasks;
     }
 
+	
+	@RequestMapping(method = RequestMethod.GET, value = PathURI.TASK_GROUP)
+    public List<TaskGroup> getTaskGroup() throws Exception {
+        List<TaskGroup> taskGroup = taskService.loadTaskGroup();
+        return taskGroup;
+    }
+	
+	
 	@RequestMapping(method = RequestMethod.GET, value = PathURI.TASK_BY_GROUPID)
     public List<Task> getTasksByGroup(@PathVariable(value = PathURI.GROUP_ID) final Integer groupId) throws Exception {
         List<Task> tasks = taskService.loadTasksByGroup(groupId);

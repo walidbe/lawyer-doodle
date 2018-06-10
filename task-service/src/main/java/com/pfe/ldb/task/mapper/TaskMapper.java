@@ -12,7 +12,7 @@ import com.pfe.ldb.entity.TaskGroupEntity;
 import com.pfe.ldb.task.imapper.IMapper;
 import com.pfe.ldb.task.repository.TaskGroupRepository;
 
-public class TaskMapper implements IMapper {
+public  class TaskMapper implements IMapper {
 
 	@Autowired
 	private TaskGroupRepository taskGroupRepository;
@@ -27,7 +27,7 @@ public class TaskMapper implements IMapper {
 	@Override
 	public AbstractEntity convertToEntity(AbstractModel model) throws ParseException {
 		Task task = (Task)model;
-		TaskGroupEntity taskGroupEntity = taskGroupRepository.findById(task.getId()).get().getTaskGroup();
+		TaskGroupEntity taskGroupEntity = taskGroupRepository.findById(task.getId()).get();
 		TaskEntity taskEntity = new TaskEntity(task.getName(), task.getDescription(),taskGroupEntity);
 		return taskEntity;
 	}
