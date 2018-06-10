@@ -25,8 +25,8 @@ public class TaskGroupMapper implements IMapper {
 	private TaskRepository taskRepository;
 	@Autowired
 	private TaskGroupRepository taskGroupRepository;
-
-	private final static IMapper taskMapper = new TaskMapper();
+	@Autowired
+	private TaskMapper taskMapper;
 
 	@Override
 	public AbstractModel convertToDTO(AbstractEntity entity) throws ParseException {

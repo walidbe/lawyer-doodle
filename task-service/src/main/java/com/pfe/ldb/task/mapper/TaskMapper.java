@@ -2,6 +2,7 @@ package com.pfe.ldb.task.mapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.ParseException;
+import org.springframework.stereotype.Component;
 
 import com.pfe.ldb.core.protogest.task.Task;
 import com.pfe.ldb.core.protogest.user.User;
@@ -12,6 +13,7 @@ import com.pfe.ldb.entity.TaskGroupEntity;
 import com.pfe.ldb.task.imapper.IMapper;
 import com.pfe.ldb.task.repository.TaskGroupRepository;
 
+@Component
 public  class TaskMapper implements IMapper {
 
 	@Autowired

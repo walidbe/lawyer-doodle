@@ -26,8 +26,11 @@ public class TaskService implements ITaskService {
 	@Autowired
 	private TaskGroupRepository taskGroupRepository;
 
-	private final static IMapper taskMapper = new TaskMapper();
-	private final static IMapper taskGroupMapper = new TaskGroupMapper();
+	@Autowired
+	private  TaskMapper taskMapper;
+	
+	@Autowired
+	private  TaskGroupMapper taskGroupMapper ;
 
 
 	@Override
