@@ -4,27 +4,24 @@ import java.util.List;
 
 import com.pfe.ldb.core.protogest.utils.AbstractModel;
 
-public class TaskGroup extends AbstractModel {
+public class TaskGroup extends Group {
 
 
 	private List<Task> tasks;
-	private String name;
-	private TaskGroup parentGroup;
-	private List<TaskGroup> childTaskGroup;
+	private Group parentGroup;
+	private List<Group> childTaskGroup;
 	
 	
-	public TaskGroup(Integer id , List<Task> tasks, String name, TaskGroup parentGroup, List<TaskGroup> childTaskGroup) {
-		super(id);
+	public TaskGroup(Integer id , List<Task> tasks, String name, String description, Group parentGroup, List<Group> childTaskGroup) {
+		super(id,name,description);
 		this.tasks = tasks;
-		this.name = name;
 		this.parentGroup = parentGroup;
 		this.childTaskGroup = childTaskGroup;
 	}
 	
-	public TaskGroup(List<Task> tasks, String name, TaskGroup parentGroup, List<TaskGroup> childTaskGroup) {
-		super();
+	public TaskGroup(List<Task> tasks, String name, String description, Group parentGroup, List<Group> childTaskGroup) {
+		super(name, description);
 		this.tasks = tasks;
-		this.name = name;
 		this.parentGroup = parentGroup;
 		this.childTaskGroup = childTaskGroup;
 	}
@@ -33,13 +30,11 @@ public class TaskGroup extends AbstractModel {
 	public List<Task> getTasks() {
 		return tasks;
 	}
-	public String getName() {
-		return name;
-	}
-	public TaskGroup getParentGroup() {
+
+	public Group getParentGroup() {
 		return parentGroup;
 	}
-	public List<TaskGroup> getChildTaskGroup() {
+	public List<Group> getChildTaskGroup() {
 		return childTaskGroup;
 	}
 }
