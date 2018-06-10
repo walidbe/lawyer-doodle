@@ -6,7 +6,6 @@ import com.pfe.ldb.core.protogest.user.User;
 import com.pfe.ldb.core.protogest.utils.AbstractModel;
 import com.pfe.ldb.entity.AbstractEntity;
 import com.pfe.ldb.entity.MemberEntity;
-import com.pfe.ldb.entity.UserEntity;
 import com.pfe.ldb.member.imapper.IMapper;
 
 public class MemberMapper implements IMapper {

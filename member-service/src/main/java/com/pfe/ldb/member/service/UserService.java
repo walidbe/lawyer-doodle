@@ -10,6 +10,7 @@ import com.pfe.ldb.core.protogest.user.User;
 import com.pfe.ldb.entity.MemberEntity;
 import com.pfe.ldb.entity.UserAuthoritiesEntity;
 import com.pfe.ldb.entity.UserEntity;
+import com.pfe.ldb.member.imapper.IMapper;
 import com.pfe.ldb.member.iservice.IUserService;
 import com.pfe.ldb.member.mapper.MemberMapper;
 import com.pfe.ldb.member.mapper.UserMapper;
@@ -29,8 +30,8 @@ public class UserService implements IUserService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
    
-    private final static UserMapper userMapper = new UserMapper();
-    private final static MemberMapper memberMapper = new MemberMapper();
+    private final static IMapper userMapper = new UserMapper();
+    private final static IMapper memberMapper = new MemberMapper();
 
 	@Override
 	public List<UserAuthoritiesEntity> loadByEmail(String email) {
@@ -48,7 +49,8 @@ public class UserService implements IUserService {
 	}
 	@Override
 	public void save(User user) {
-		MemberEntity memberEntity = memberRepository.save(memberMapper.convertToEntity(user));
+		
+		MemberEntity memberEntity = memberRepository.save((MemberEntity)memberMapper.convertToEntity(user));
 		UserEntity userEntity = (UserEntity)userMapper.convertToEntity(user);
 		userEntity.setMember(memberEntity);
 		userEntity.setPassword(bCryptPasswordEncoder.encode(userEntity.getPassword()));
