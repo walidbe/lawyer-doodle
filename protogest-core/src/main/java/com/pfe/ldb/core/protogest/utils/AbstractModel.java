@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class AbstractModel implements Serializable {
 
-    private static final long  serialVersionUID = 3552940299748738554L;
+    private static final long  serialVersionUID = 235240299732838987L;
 
 	private final Integer id;
 
