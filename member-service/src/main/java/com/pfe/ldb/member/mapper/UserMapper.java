@@ -20,7 +20,6 @@ public class UserMapper implements IMapper{
 
 	@Override
 	public AbstractModel convertToDTO(AbstractEntity entity) throws ParseException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
