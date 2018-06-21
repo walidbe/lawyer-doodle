@@ -13,3 +13,11 @@ eureka:
 
 server:
   port: 5555
+  
+zuul:
+  sensitive-headers: Cookie,Set-Cookie
+  ignored-services: "*"
+  routes:
+    member-service:
+      path: /member-service/**
+      serviceId: member-service 
