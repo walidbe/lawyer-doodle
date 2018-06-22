@@ -77,10 +77,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/h2-console/**/**").permitAll()
 
             .antMatchers("/auth/**").permitAll()
+            .antMatchers(PathURI.USER_REGISTER).permitAll()
+            .antMatchers(PathURI.USER_LOGIN).permitAll()
+            .antMatchers(PathURI.USER_INFO).permitAll()
             .anyRequest().authenticated();
         httpSecurity
         .authorizeRequests()
-            .antMatchers(PathURI.USER_REGISTER).permitAll();
+            .antMatchers(PathURI.USER_LOGIN).permitAll();
 
         // Custom JWT based security filter
         JwtAuthorizationTokenFilter authenticationTokenFilter = new JwtAuthorizationTokenFilter(userDetailsService(), jwtTokenUtil, tokenHeader);

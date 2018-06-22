@@ -39,13 +39,14 @@ public class UserService implements IUserService {
 		return null;
 	}
 	@Override
-	public List<UserAuthoritiesEntity> loadByUsername(String username) {
+	public User loadByUsername(String username) {
 		UserEntity userEntity = userRepository.findByUsername(username);
-		List<UserAuthoritiesEntity> userAuthorities = null;
+		User user = (User) userMapper.convertToDTO(userEntity);
+	/*	List<UserAuthoritiesEntity> userAuthorities = null;
 		if(userEntity != null) {
 			userAuthorities = roleRepository.findByUserId(userEntity.getId());
-		}
-		return userAuthorities;
+		}*/
+		return user;
 	}
 	@Override
 	public void save(User user) {

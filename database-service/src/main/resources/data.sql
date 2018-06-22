@@ -22,3 +22,5 @@ INSERT INTO TASK(created_date, name, description, task_group_id) VALUES(CURRENT_
 INSERT INTO TASK(created_date, name, description, task_group_id) VALUES(CURRENT_TIMESTAMP, 'Moyens D’irrecevabilité', '', (SELECT id FROM TASK_GROUP WHERE name= 'Moyens préliminaires'));
 INSERT INTO TASK(created_date, name, description, task_group_id) VALUES(CURRENT_TIMESTAMP, 'Autres Moyens Préliminaires', '', (SELECT id FROM TASK_GROUP WHERE name= 'Moyens préliminaires'));
 
+INSERT INTO MEMBER(created_date, email, first_name, last_name) VALUES(CURRENT_TIMESTAMP, 'walidrift@gmail.com', 'Walid', 'Bezzaoui');
+INSERT INTO USER(created_date, password, username, member_id)  VALUES(CURRENT_TIMESTAMP, '$2a$10$qwMriqG.D04PPneIIjC/l.xI/Gh2gPL1/wnJl2ILs/wNtXKNqHh66', 'walidrift@gmail.com', 1);

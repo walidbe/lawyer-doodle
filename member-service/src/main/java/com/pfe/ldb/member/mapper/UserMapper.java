@@ -20,8 +20,12 @@ public class UserMapper implements IMapper{
 
 	@Override
 	public AbstractModel convertToDTO(AbstractEntity entity) throws ParseException {
-		return null;
+		UserEntity userEntity = (UserEntity)entity;
+		User user = new User(userEntity.getMember().getEmail(), userEntity.getMember().getEmail(), userEntity.getMember().getFirstName(), userEntity.getMember().getLastName());
+		return user;
 	}
+
+
 
 	@Override
 	public AbstractEntity convertToEntity(AbstractModel model) throws ParseException {

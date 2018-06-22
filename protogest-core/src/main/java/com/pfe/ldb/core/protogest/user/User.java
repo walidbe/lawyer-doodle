@@ -51,6 +51,14 @@ public class User extends AbstractModel {
 		this.authorities = authorities;
 	}
 	
+	
+	public User(String username, String email, String firstName, String lastName) {
+		super();
+		this.username = username;
+		this.email = email;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
 	public void setAuthorities(List<Authoritie> authorities) {
 		
 		this.authorities = authorities;

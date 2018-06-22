@@ -7,6 +7,6 @@ import com.pfe.ldb.entity.UserAuthoritiesEntity;
 public interface IUserService {
 	
 	public List<UserAuthoritiesEntity> loadByEmail(String email);
-	public List<UserAuthoritiesEntity> loadByUsername(String username);
+	public User loadByUsername(String username);
 	public void save(User user);
 }
