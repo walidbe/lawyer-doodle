@@ -31,7 +31,7 @@ public class UserMapper implements IMapper{
 	public AbstractEntity convertToEntity(AbstractModel model) throws ParseException {
 		User user = (User)model;
 		MemberEntity memberEntity = new MemberEntity(user.getFirstName(), user.getLastName(), user.getEmail());
-		UserEntity userEntity = new UserEntity(memberEntity, user.getUsername(), user.getPassword());
+		UserEntity userEntity = new UserEntity(memberEntity, user.getEmail(), user.getPassword());
 		return userEntity;
 	}
 

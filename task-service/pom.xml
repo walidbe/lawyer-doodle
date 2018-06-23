@@ -28,6 +28,7 @@
 	</properties>
 
 	<dependencies>
+		
 		<dependency>
 			<groupId>com.pfe.ldb.core</groupId>
 			<artifactId>protogest-core</artifactId>

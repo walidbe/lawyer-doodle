@@ -3,8 +3,8 @@ package com.pfe.ldb.task.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +15,7 @@ import com.pfe.ldb.task.controller.path.PathURI;
 import com.pfe.ldb.task.iservice.ITaskService;
 
 @RestController
+
 public class TaskController {
 
 	@Autowired
@@ -27,6 +28,7 @@ public class TaskController {
     }
 
 	
+    @CrossOrigin(origins = "http://localhost:3001")
 	@RequestMapping(method = RequestMethod.GET, value = PathURI.TASK_GROUP)
     public List<TaskGroup> getTaskGroup() throws Exception {
         List<TaskGroup> taskGroup = taskService.loadTaskGroup();
