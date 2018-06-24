@@ -4,16 +4,16 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="stateName")
-public class StateNameEntity extends AbstractEntity {
+@Table(name="eventState")
+public class EventStateEntity extends AbstractEntity {
 
 	private String name;
 	
-	public StateNameEntity() {
+	public EventStateEntity() {
 		
 	}
 	
-	public StateNameEntity(String name) {
+	public EventStateEntity(String name) {
 		super();
 		this.name = name;
 	}

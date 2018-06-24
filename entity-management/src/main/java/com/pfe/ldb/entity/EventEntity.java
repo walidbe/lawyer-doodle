@@ -24,18 +24,22 @@ public class EventEntity extends AbstractEntity {
 	@JoinColumn(name = "sourceId")
 	private MemberEntity member;
 	
+	@ManyToOne
+	@JoinColumn(name = "eventStateId")
+	private EventStateEntity eventState;
 	
 	public EventEntity() {
 		
 	}
 	
-	public EventEntity(String name, String description, Date eventDate, TaskEntity task, MemberEntity member) {
+	public EventEntity(String name, String description, Date eventDate, TaskEntity task, MemberEntity member, EventStateEntity eventState) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.eventDate = eventDate;
 		this.task = task;
 		this.member = member;
+		this.eventState = eventState;
 	}
 
 
@@ -86,6 +90,15 @@ public class EventEntity extends AbstractEntity {
 
 	public void setMember(MemberEntity member) {
 		this.member = member;
+	}
+	
+	public EventStateEntity getEventState() {
+		return eventState;
+	}
+
+
+	public void setEventState(EventStateEntity eventState) {
+		this.eventState = eventState;
 	}
 	
 }

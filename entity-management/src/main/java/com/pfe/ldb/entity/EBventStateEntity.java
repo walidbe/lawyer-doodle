@@ -6,8 +6,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="eventState")
-public class EventState extends AbstractEntity {
+@Table(name="ebventState")
+public class EBventStateEntity extends AbstractEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "eventId")
@@ -15,13 +15,13 @@ public class EventState extends AbstractEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "stateId")
-	private StateNameEntity state;
+	private EventStateEntity state;
 	
-	public EventState() {
+	public EBventStateEntity() {
 		
 	}
 	
-	public EventState(EventEntity event, StateNameEntity state) {
+	public EBventStateEntity(EventEntity event, EventStateEntity state) {
 		super();
 		this.event = event;
 		this.state = state;
@@ -35,11 +35,11 @@ public class EventState extends AbstractEntity {
 		this.event = event;
 	}
 
-	public StateNameEntity getState() {
+	public EventStateEntity getState() {
 		return state;
 	}
 
-	public void setState(StateNameEntity state) {
+	public void setState(EventStateEntity state) {
 		this.state = state;
 	}
 	
