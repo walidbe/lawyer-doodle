@@ -2,7 +2,6 @@ SET FOREIGN_KEY_CHECKS = 0;
 DELETE FROM EVENT;
 DELETE FROM EVENT_STATE;
 DELETE FROM MEMBER;
-DELETE FROM STATE_NAME;
 DELETE FROM SUGGESTION;
 DELETE FROM TASK_GROUP;
 DELETE FROM TASK;
@@ -24,3 +23,8 @@ INSERT INTO TASK(created_date, name, description, task_group_id) VALUES(CURRENT_
 
 INSERT INTO MEMBER(created_date, email, first_name, last_name) VALUES(CURRENT_TIMESTAMP, 'walidrift@gmail.com', 'Walid', 'Bezzaoui');
 INSERT INTO USER(created_date, password, username, member_id)  VALUES(CURRENT_TIMESTAMP, '$2a$10$qwMriqG.D04PPneIIjC/l.xI/Gh2gPL1/wnJl2ILs/wNtXKNqHh66', 'walidrift@gmail.com', 1);
+
+INSERT INTO EVENT_STATE(created_date, name) VALUES(CURRENT_TIMESTAMP, 'Pending');
+INSERT INTO EVENT_STATE(created_date, name) VALUES(CURRENT_TIMESTAMP, 'Accepted');
+INSERT INTO EVENT_STATE(created_date, name) VALUES(CURRENT_TIMESTAMP, 'Refused');
+
