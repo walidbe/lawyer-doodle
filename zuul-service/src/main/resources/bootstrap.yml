@@ -21,3 +21,7 @@ zuul:
     member-service:
       path: /member-service/**
       serviceId: member-service 
+      
+    task-service:
+      path: /task-service/**
+      serviceId: task-service 
