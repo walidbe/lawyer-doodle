@@ -25,3 +25,11 @@ zuul:
     task-service:
       path: /task-service/**
       serviceId: task-service 
+      
+    calendar-service:
+      path: /calendar-service/**
+      serviceId: calendar-service 
+      
+    event-service:
+      path: /event-service/**
+      serviceId: event-service 
