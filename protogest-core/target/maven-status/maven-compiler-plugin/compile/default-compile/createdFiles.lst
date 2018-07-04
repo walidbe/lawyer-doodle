@@ -1,0 +1,8 @@
+com\pfe\ldb\core\protogest\event\Event.class
+com\pfe\ldb\core\protogest\user\Authoritie.class
+com\pfe\ldb\core\protogest\task\Group.class
+com\pfe\ldb\core\protogest\task\Task.class
+com\pfe\ldb\core\protogest\task\TaskGroup.class
+com\pfe\ldb\core\protogest\event\EventState.class
+com\pfe\ldb\core\protogest\user\User.class
+com\pfe\ldb\core\protogest\utils\AbstractModel.class
