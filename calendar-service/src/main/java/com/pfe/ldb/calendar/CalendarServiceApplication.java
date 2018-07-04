@@ -1,4 +1,5 @@
-package com.pfe.ldb.calendar.configuration;
+package com.pfe.ldb.calendar;
+
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
