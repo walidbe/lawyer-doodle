@@ -21,6 +21,7 @@ public class TaskController {
 	@Autowired
 	private ITaskService taskService;
 	
+    @CrossOrigin(origins = "http://localhost:3001")
 	@RequestMapping(method = RequestMethod.GET, value = PathURI.TASKS)
     public List<Task> getTasks() throws Exception {
         List<Task> tasks = taskService.loadTasks();
