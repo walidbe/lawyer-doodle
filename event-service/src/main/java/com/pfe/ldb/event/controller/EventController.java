@@ -2,17 +2,22 @@ package com.pfe.ldb.event.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pfe.ldb.core.protogest.event.Event;
+import com.pfe.ldb.core.protogest.event.EventGroup;
 import com.pfe.ldb.event.controller.path.PathURI;
 import com.pfe.ldb.event.iservice.IEventService;
 
@@ -23,9 +28,18 @@ public class EventController {
 	@Autowired
 	private IEventService eventService;
 
-	@RequestMapping(method = RequestMethod.GET, value = PathURI.EVENT)
-	public String getEvents() throws Exception {
-		return "events";
+	@CrossOrigin(origins = "http://localhost:3001")
+	@RequestMapping(method = RequestMethod.GET, value = PathURI.EVENTS)
+	public List<Event> getEvents() throws Exception {
+		return eventService.loadEvents();
+	}
+	
+	
+
+	@CrossOrigin(origins = "http://localhost:3001")
+	@RequestMapping(method = RequestMethod.GET, value = PathURI.EVENTS_GROUP)
+	public List<EventGroup> getEventsGroup() throws Exception {
+		return eventService.loadEventsGroup();
 	}
 
 	@CrossOrigin(origins = "http://localhost:3001")
@@ -33,7 +47,8 @@ public class EventController {
 	public Event updateEvent(@RequestBody(required = true) final Event event) throws Exception {
 		return eventService.updateEvent(event);
 	}
-
+	
+	
 	@CrossOrigin(origins = "http://localhost:3001")
 	@RequestMapping(method = RequestMethod.POST, value = PathURI.EVENTS)
 	public List<Event> updateEvents(@RequestBody(required = true) final Map<String, String> events) throws Exception {
@@ -42,12 +57,18 @@ public class EventController {
 		int cnt = 1;
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		String eventName = events.get("eventName");
+		List<String> emailsToNotify = new ArrayList<>();
+		emailsToNotify.add(events.get("email1"));
+		emailsToNotify.add(events.get("email2"));
+
 		for (String key : events.keySet()) {
-			if(!key.equals("eventName")) {
-				eventss.add(new Event(formatter.parse(events.get(key)), cnt++, eventName));
+			if(!key.equals("eventName") && !key.equals("email1") && !key.equals("email2")) {
+				eventss.add(new Event(formatter.parse(events.get(key)), cnt++, eventName,emailsToNotify));
 			}
 		}
 		return eventService.updateEvents(eventss);
 	}
+
+	
 
 }

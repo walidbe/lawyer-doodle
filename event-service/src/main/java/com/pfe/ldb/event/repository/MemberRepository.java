@@ -6,4 +6,5 @@ import com.pfe.ldb.entity.MemberEntity;
 
 public interface MemberRepository extends CrudRepository<MemberEntity,Integer> {
 
+	MemberEntity findByEmail(String email);
 }
