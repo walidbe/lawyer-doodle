@@ -1,6 +1,7 @@
 package com.pfe.ldb.core.protogest.event;
 
 import java.util.Date;
+import java.util.List;
 
 import com.pfe.ldb.core.protogest.utils.AbstractModel;
 
@@ -16,6 +17,7 @@ public class Event extends AbstractModel {
 	private Integer sourceId;
 	private EventState eventState;
 	private String eventName;
+	private List<String> emails;
 	
 	public Event() {
 		super();
@@ -23,7 +25,8 @@ public class Event extends AbstractModel {
 		this.task = null;
 		this.sourceId = null;
 		this.eventState = null;
-		eventName =null;
+		this.eventName =null;
+		this.emails = null;
 	}
 	
 	public Event(Integer id, Date eventDate, Integer task, Integer sourceId, EventState eventState) {
@@ -47,6 +50,13 @@ public class Event extends AbstractModel {
 		this.eventDate = eventDate;
 		this.task = task;
 		this.eventName = eventName;
+	}
+	
+	public Event(Date eventDate, Integer task, String eventName, List<String> emails) {
+		this.eventDate = eventDate;
+		this.task = task;
+		this.eventName = eventName;
+		this.emails = emails;
 	}
 	
 	
@@ -78,6 +88,14 @@ public class Event extends AbstractModel {
 	}
 	public void setEventState(EventState eventState) {
 		this.eventState = eventState;
+	}
+
+	public List<String> getEmails() {
+		return emails;
+	}
+
+	public void setEmails(List<String> emails) {
+		this.emails = emails;
 	}
 	
 	

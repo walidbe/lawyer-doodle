@@ -1,4 +1,5 @@
 com\pfe\ldb\core\protogest\event\Event.class
+com\pfe\ldb\core\protogest\event\EventGroup.class
 com\pfe\ldb\core\protogest\user\Authoritie.class
 com\pfe\ldb\core\protogest\task\Group.class
 com\pfe\ldb\core\protogest\task\Task.class
