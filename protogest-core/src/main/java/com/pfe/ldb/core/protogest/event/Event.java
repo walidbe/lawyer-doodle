@@ -64,6 +64,9 @@ public class Event extends AbstractModel {
 	public String getEventName() {
 		return eventName;
 	}
+	public void setEventName(String eventName) {
+		this.eventName = eventName;
+	}
 	public Date getEventDate() {
 		return eventDate;
 	}
