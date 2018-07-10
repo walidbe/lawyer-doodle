@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.pfe.ldb.core.protogest.event.Event;
 import com.pfe.ldb.core.protogest.event.EventGroup;
+import com.pfe.ldb.core.protogest.event.EventJson;
 import com.pfe.ldb.core.protogest.event.EventState;
 import com.pfe.ldb.core.protogest.task.Task;
 import com.pfe.ldb.core.protogest.task.TaskGroup;
@@ -37,6 +38,7 @@ import com.pfe.ldb.event.repository.MemberRepository;
 @Service
 public class EventService implements IEventService {
 
+	private final static Integer TASK_ID_DATE = 1;
 
 	@Autowired
 	private EventRepository eventRepository;
@@ -129,11 +131,96 @@ public class EventService implements IEventService {
 		
 		return updatedEvent;
 	}
+	
+	
 
 	@Override
-	public List<Event> loadEvents() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<EventJson> loadEvents() {
+		List<EventJson> events = new ArrayList<>();
+		List<Integer> labels = new ArrayList<>();
+		labels.add(1);
+		labels.add(4);
+		for(EventGroup eventGroup : loadEventsGroup()) {
+			Boolean completed =false;
+			Boolean pending = false;
+			Boolean deleted = false;
+			Boolean archived = false;
+			EventEntity eventEntity = eventRepository.findByTaskIdAndEventGroupId(TASK_ID_DATE,  eventGroup.getId());
+					
+				EventState state = EventState.valueOf(eventEntity.getEventState().getName().toUpperCase());
+				if(state.getState().equalsIgnoreCase("Accepted")) {
+					completed = true;
+					pending = false;
+				}
+				else if(state.getState().equalsIgnoreCase("Pending")) {
+					completed = false;
+					pending = true;
+				}
+				EventJson event = new EventJson(eventEntity.getId(), eventEntity.getEventDate(), eventEntity.getTask().getId(),
+						eventEntity.getMember().getId(), state);
+					List<String> emails = new ArrayList<>();
+					for(EventUserDestinationEntity eventUser : eventUserDestRepository.findByEventId(event.getId())){
+						emails.add(eventUser.getEmail());
+					}
+				   event.setTitle(eventGroup.getEventName());
+				   event.setEmails(emails);
+				   event.setLabels(labels);
+				   event.setCompleted(completed);
+				   event.setPending(pending);
+				   event.setDeleted(deleted);
+				   event.setArchived(archived);
+				   event.setChildEvents(getChildEvent(eventGroup));
+				   events.add(event);
+			}
+		return events;
 	}
+	
+	private List<Event> getChildEvent(EventGroup eventGroup) {
+		List<Event> childEvents = new ArrayList();
+		for(EventEntity eventEntity : eventRepository.findByEventGroupId(eventGroup.getId())) {
+			Event event = (Event)eventMapper.convertToDTO(eventEntity);
+			event.setEventName(eventEntity.getTask().getName());
+			childEvents.add(event);
+			
+		}
+		return childEvents;
+	}
+	/*
+	
+	@Override
+	public List<EventJson> loadEvents() {
+		List<EventJson> events = new ArrayList<>();
+		List<Integer> labels = new ArrayList<>();
+		labels.add(1);
+		labels.add(4);
+		for(EventGroup eventGroup : loadEventsGroup()) {
+			Boolean completed;
+			Boolean pending;
+		//	EventEntity eventEntity = eventRepository.findByTaskIdAndEventGroupId(TASK_ID_DATE,  eventGroup.getId());
+			for(EventEntity eventEntity : eventRepository.findByEventGroupId(eventGroup.getId())) {
+					
+				EventState state = EventState.valueOf(eventEntity.getEventState().getName().toUpperCase());
+				if(state.getState().equalsIgnoreCase("Accepted")) {
+					completed = true;
+					pending = false;
+				}
+				else if(state.getState().equalsIgnoreCase("Pending")) {
+					completed = false;
+					pending = true;
+				}
+				EventJson event = new EventJson(eventEntity.getId(), eventEntity.getEventDate(), eventEntity.getTask().getId(),
+						eventEntity.getMember().getId(), state);
+					List<String> emails = new ArrayList<>();
+					for(EventUserDestinationEntity eventUser : eventUserDestRepository.findByEventId(event.getId())){
+						emails.add(eventUser.getEmail());
+					}
+				   event.setTitle(eventGroup.getEventName());
+				   event.setEmails(emails);
+				   event.setLabels(labels);
+				   events.add(event);
+			}
+		}
+		return events;
+	}*/
 
 }

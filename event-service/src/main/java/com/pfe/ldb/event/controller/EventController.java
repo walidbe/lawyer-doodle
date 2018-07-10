@@ -18,6 +18,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pfe.ldb.core.protogest.event.Event;
 import com.pfe.ldb.core.protogest.event.EventGroup;
+import com.pfe.ldb.core.protogest.event.EventJson;
 import com.pfe.ldb.event.controller.path.PathURI;
 import com.pfe.ldb.event.iservice.IEventService;
 
@@ -30,7 +31,7 @@ public class EventController {
 
 	@CrossOrigin(origins = "http://localhost:3001")
 	@RequestMapping(method = RequestMethod.GET, value = PathURI.EVENTS)
-	public List<Event> getEvents() throws Exception {
+	public List<EventJson> getEvents() throws Exception {
 		return eventService.loadEvents();
 	}
 	
