@@ -26,7 +26,7 @@ import com.pfe.ldb.event.repository.TaskRepository;
 @Component
 public class EventMapper implements IMapper {
 
-	// For Development purpose
+	// For PROTOTYPE purpose
 	private final Integer SOURCE_ID = 1;
 	@Autowired
 	private TaskRepository taskRepository;

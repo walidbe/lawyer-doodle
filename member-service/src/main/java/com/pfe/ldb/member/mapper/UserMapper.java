@@ -4,12 +4,15 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.ParseException;
 
+import com.pfe.ldb.core.protogest.user.Authoritie;
 import com.pfe.ldb.core.protogest.user.User;
 import com.pfe.ldb.core.protogest.utils.AbstractModel;
 import com.pfe.ldb.entity.AbstractEntity;
 import com.pfe.ldb.entity.MemberEntity;
+import com.pfe.ldb.entity.UserAuthoritiesEntity;
 import com.pfe.ldb.entity.UserEntity;
 import com.pfe.ldb.member.imapper.IMapper;
+import com.pfe.ldb.member.repository.UserAuthoritiesRepository;
 
 public class UserMapper implements IMapper{
 
@@ -17,12 +20,19 @@ public class UserMapper implements IMapper{
 	private ModelMapper modelMapper;
 	
 
+	
+
 
 	@Override
 	public AbstractModel convertToDTO(AbstractEntity entity) throws ParseException {
 		UserEntity userEntity = (UserEntity)entity;
-		User user = new User(userEntity.getMember().getEmail(), userEntity.getMember().getEmail(), userEntity.getMember().getFirstName(), userEntity.getMember().getLastName());
-		return user;
+		if(userEntity != null) {
+			
+			User user = new User(userEntity.getMember().getEmail(), userEntity.getMember().getEmail(), userEntity.getMember().getFirstName(), userEntity.getMember().getLastName(),null);
+			
+			return user;
+		}
+		return null;
 	}
 
 

@@ -14,7 +14,7 @@ public class User extends AbstractModel {
 	private String username;
 	private String password;
 	private String email;
-	private List<Authoritie> authorities;
+	private Authoritie authorities;
 	
 	public User() {
 		super();
@@ -26,7 +26,7 @@ public class User extends AbstractModel {
 		this.lastName = null;
 	}
 	
-	public User(String username, String password, String email, List<Authoritie> authorities) {
+	public User(String username, String password, String email, Authoritie authorities) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -34,16 +34,18 @@ public class User extends AbstractModel {
 		this.authorities = authorities;
 	}
 	
-	public User(String username, String password, String email, String firstName, String lastName) {
+	public User(String username, String password, String email, String firstName, String lastName,Authoritie authorities) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.authorities = authorities;
+
 	}
 	
-	public User(final Integer id, String username, String password, String email, List<Authoritie> authorities) {
+	public User(final Integer id, String username, String password, String email, Authoritie authorities) {
 		super(id);
 		this.username = username;
 		this.password = password;
@@ -52,14 +54,16 @@ public class User extends AbstractModel {
 	}
 	
 	
-	public User(String username, String email, String firstName, String lastName) {
+	public User(String username, String email, String firstName, String lastName, Authoritie authorities) {
 		super();
 		this.username = username;
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.authorities = authorities;
+
 	}
-	public void setAuthorities(List<Authoritie> authorities) {
+	public void setAuthorities(Authoritie authorities) {
 		
 		this.authorities = authorities;
 	}
@@ -88,7 +92,7 @@ public class User extends AbstractModel {
 		this.password = password;
 	}
 
-	public List<Authoritie> getAuthorities() {
+	public Authoritie getAuthorities() {
 		return authorities;
 	}
 
