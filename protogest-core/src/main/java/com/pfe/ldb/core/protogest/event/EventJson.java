@@ -17,6 +17,7 @@ public class EventJson extends AbstractModel {
 	private Integer sourceId;
 	private EventState eventState;
 	private String title;
+	private String taskName;
 	private List<String> emails;
 	private List<Integer> labels;
 	private Boolean completed;
@@ -159,6 +160,14 @@ public class EventJson extends AbstractModel {
 
 	public void setChildEvents(List<Event> childEvents) {
 		this.childEvents = childEvents;
+	}
+
+	public String getTaskName() {
+		return taskName;
+	}
+
+	public void setTaskName(String taskName) {
+		this.taskName = taskName;
 	}
 	
 	

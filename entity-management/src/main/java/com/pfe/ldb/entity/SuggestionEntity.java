@@ -18,13 +18,14 @@ public class SuggestionEntity extends AbstractEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "voteId")
-	private VoteEntity vote;
+	private EventUserDestinationEntity vote;
+	
 	
 	public SuggestionEntity() {
 		
 	}
 	
-	public SuggestionEntity(String name, String description, Date suggestionDate, VoteEntity vote) {
+	public SuggestionEntity(String name, String description, Date suggestionDate, EventUserDestinationEntity vote) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -56,11 +57,11 @@ public class SuggestionEntity extends AbstractEntity {
 		this.suggestionDate = suggestionDate;
 	}
 
-	public VoteEntity getVote() {
+	public EventUserDestinationEntity getVote() {
 		return vote;
 	}
 
-	public void setVote(VoteEntity vote) {
+	public void setVote(EventUserDestinationEntity vote) {
 		this.vote = vote;
 	}
 	

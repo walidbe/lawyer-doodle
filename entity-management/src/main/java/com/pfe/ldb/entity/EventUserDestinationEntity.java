@@ -9,6 +9,8 @@ import javax.persistence.Table;
 @Table(name="eventUserDestination")
 public class EventUserDestinationEntity extends AbstractEntity {
 
+
+	
 	
 	public EventUserDestinationEntity() {
 		
@@ -19,6 +21,18 @@ public class EventUserDestinationEntity extends AbstractEntity {
 		this.email = email;
 		this.member = member;
 	}
+	
+	public EventUserDestinationEntity(EventEntity event, String email, MemberEntity member, EventStateEntity eventState) {
+		super();
+		this.event = event;
+		this.email = email;
+		this.member = member;
+		this.eventState = eventState;
+	}
+	
+	@ManyToOne
+	@JoinColumn(name = "eventStateId")
+	private EventStateEntity eventState;
 
 	@ManyToOne
 	@JoinColumn(name = "eventId")
@@ -52,6 +66,12 @@ public class EventUserDestinationEntity extends AbstractEntity {
 
 	public void setMember(MemberEntity member) {
 		this.member = member;
+	}
+	public EventStateEntity getEventState() {
+		return eventState;
+	}
+	public void setEventState(EventStateEntity eventState) {
+		this.eventState = eventState;
 	}
 	
 }
