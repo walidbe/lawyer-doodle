@@ -66,7 +66,7 @@ public class CalendarController {
 	private String clientSecret;
 	private Set<Event> events = new HashSet<>();
 
-	final DateTime date1 = new DateTime("2017-05-01T16:30:00.000+05:30");
+	final DateTime date1 = new DateTime("2018-07-01T16:30:00.000+05:30");
 	final DateTime date2 = new DateTime(new Date());
 	
 	
