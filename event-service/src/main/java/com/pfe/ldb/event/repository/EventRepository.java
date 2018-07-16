@@ -10,4 +10,5 @@ public interface EventRepository extends  CrudRepository<EventEntity,Integer> {
 
 		EventEntity findByTaskIdAndEventGroupId(Integer taskId, Integer eventGroupId);
 		List<EventEntity> findByEventGroupId(Integer eventGroupId);
+		
 }

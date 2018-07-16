@@ -1,6 +1,9 @@
 package com.pfe.ldb.event.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +23,7 @@ import com.pfe.ldb.core.protogest.task.Task;
 import com.pfe.ldb.core.protogest.task.TaskGroup;
 import com.pfe.ldb.entity.EventEntity;
 import com.pfe.ldb.entity.EventGroupEntity;
+import com.pfe.ldb.entity.EventStateEntity;
 import com.pfe.ldb.entity.EventUserDestinationEntity;
 import com.pfe.ldb.entity.MemberEntity;
 import com.pfe.ldb.entity.TaskEntity;
@@ -39,6 +43,7 @@ import com.pfe.ldb.event.repository.MemberRepository;
 public class EventService implements IEventService {
 
 	private final static Integer TASK_ID_DATE = 1;
+	
 
 	@Autowired
 	private EventRepository eventRepository;
@@ -91,7 +96,9 @@ public class EventService implements IEventService {
 			EventUserDestinationEntity dest = eventUserDestRepository.findByEventIdAndEmail(updatedEvent.getId(), email);
 			MemberEntity member = memberRepository.findByEmail(email);
 			if(dest == null) {
-				eventUserDestRepository.save(new EventUserDestinationEntity(updatedEvent, email, member));
+				EventStateEntity eventState = eventStateRepository.findByName(event.getEventState().getState());
+				EventUserDestinationEntity eventUserEntity =new EventUserDestinationEntity(updatedEvent, email, member,eventState);
+				eventUserDestRepository.save(eventUserEntity);
 			}
 			else {
 				dest.setMember(member);
@@ -175,6 +182,84 @@ public class EventService implements IEventService {
 		return events;
 	}
 	
+	@Override
+	public List<EventJson> loadEventsForCurrentUser(String user) {
+		List<EventJson> events = new ArrayList<>();
+		List<Integer> labels = new ArrayList<>();
+		labels.add(1);
+		labels.add(4);
+		MemberEntity memberEntity = memberRepository.findByEmail(user);
+		for(EventUserDestinationEntity eventUser: eventUserDestRepository.findByMemberIdOrEmail(memberEntity.getId(), memberEntity.getEmail())) {
+			Boolean completed =false;
+			Boolean pending = false;
+			Boolean deleted = false;
+			Boolean archived = false;
+			EventEntity eventEntity = eventRepository.findById(eventUser.getEvent().getId()).get();
+			EventState state = EventState.valueOf(eventUser.getEventState().getName().toUpperCase());
+			
+			if(state.getState().equalsIgnoreCase("Accepted")) {
+				completed = true;
+				pending = false;
+			}
+			else if(state.getState().equalsIgnoreCase("Pending")) {
+				completed = false;
+				pending = true;
+			}
+			EventJson event = new EventJson(eventEntity.getId(), eventEntity.getEventDate(), eventEntity.getTask().getId(),
+					eventEntity.getMember().getId(), state);
+			 event.setTitle(eventEntity.getEventGroup().getName());
+			   event.setLabels(labels);
+			   event.setCompleted(completed);
+			   event.setPending(pending);
+			   event.setDeleted(deleted);
+			   event.setArchived(archived);
+			   event.setTaskName(eventEntity.getTask().getName());
+			   events.add(event);
+		}
+		return events;
+	}
+	
+	
+	@Override
+	public Event updateEventForCurrentUser(Map<String, String> event) {
+		Boolean completed = Boolean.parseBoolean(event.get("completed"));
+		Integer eventId = Integer.parseInt(event.get("id"));
+	//	EventEntity eventEntity = eventRepository.findById(eventId).get();
+		EventUserDestinationEntity eventUser  = eventUserDestRepository.findByEventIdAndEmail(eventId,event.get("email"));
+
+		if(completed) {
+			EventStateEntity eventState = eventStateRepository.findByName(EventState.ACCEPTED.getState());
+			
+			eventUser.setEventState(eventState);
+
+		}
+		else {
+			EventStateEntity eventState = eventStateRepository.findByName(EventState.PENDING.getState());
+			eventUser.setEventState(eventState);		
+		}
+		EventUserDestinationEntity updatedEvent = eventUserDestRepository.save(eventUser);
+		return (Event) eventMapper.convertToDTO(updatedEvent);
+	}
+
+	
+	@Override
+	public Event updateEventWithSuggestionForCurrentUser(Map<String, String> event) {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			Date dateSuggestion1 = formatter.parse(event.get("date1"));
+			Date dateSuggestion2 = formatter.parse(event.get("date2"));
+			Integer eventId = Integer.parseInt(event.get("id"));
+			Integer taskId = Integer.parseInt(event.get("task"));
+			String email = event.get("email");
+
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	
 	private List<Event> getChildEvent(EventGroup eventGroup) {
 		List<Event> childEvents = new ArrayList();
 		for(EventEntity eventEntity : eventRepository.findByEventGroupId(eventGroup.getId())) {
@@ -222,5 +307,9 @@ public class EventService implements IEventService {
 		}
 		return events;
 	}*/
+
+
+
+
 
 }

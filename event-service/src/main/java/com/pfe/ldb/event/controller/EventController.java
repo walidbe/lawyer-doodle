@@ -6,6 +6,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -35,7 +37,13 @@ public class EventController {
 		return eventService.loadEvents();
 	}
 	
-	
+	@CrossOrigin(origins = "http://localhost:3001")
+	@RequestMapping(method = RequestMethod.GET, value = PathURI.EVENTS_USER)
+	public List<EventJson> getEventsForCurrentUser(HttpServletRequest request) throws Exception {
+		
+		String user = request.getHeader("email");
+		return eventService.loadEventsForCurrentUser(user);
+	}
 
 	@CrossOrigin(origins = "http://localhost:3001")
 	@RequestMapping(method = RequestMethod.GET, value = PathURI.EVENTS_GROUP)
@@ -45,8 +53,17 @@ public class EventController {
 
 	@CrossOrigin(origins = "http://localhost:3001")
 	@RequestMapping(method = RequestMethod.POST, value = PathURI.EVENT)
-	public Event updateEvent(@RequestBody(required = true) final Event event) throws Exception {
-		return eventService.updateEvent(event);
+	public Event updateEvent(@RequestBody(required = true) final Map<String, String> event) throws Exception {
+		
+		return eventService.updateEventForCurrentUser(event);
+	}
+	
+	
+	@CrossOrigin(origins = "http://localhost:3001")
+	@RequestMapping(method = RequestMethod.POST, value = PathURI.EVENT_SUGGESTION)
+	public Event updateEventWithSuggestion(@RequestBody(required = true) final Map<String, String> event) throws Exception {
+		
+		return eventService.updateEventWithSuggestionForCurrentUser(event);
 	}
 	
 	
