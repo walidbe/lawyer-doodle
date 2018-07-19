@@ -26,6 +26,7 @@ import com.pfe.ldb.entity.EventGroupEntity;
 import com.pfe.ldb.entity.EventStateEntity;
 import com.pfe.ldb.entity.EventUserDestinationEntity;
 import com.pfe.ldb.entity.MemberEntity;
+import com.pfe.ldb.entity.SuggestionEntity;
 import com.pfe.ldb.entity.TaskEntity;
 import com.pfe.ldb.entity.TaskGroupEntity;
 import com.pfe.ldb.event.controller.path.PathURI;
@@ -38,6 +39,7 @@ import com.pfe.ldb.event.repository.EventRepository;
 import com.pfe.ldb.event.repository.EventStateRepository;
 import com.pfe.ldb.event.repository.EventUserDestinationRepository;
 import com.pfe.ldb.event.repository.MemberRepository;
+import com.pfe.ldb.event.repository.SuggestionRepository;
 
 @Service
 public class EventService implements IEventService {
@@ -59,6 +61,9 @@ public class EventService implements IEventService {
 	
 	@Autowired
 	private MemberRepository memberRepository;
+	
+	@Autowired
+	private SuggestionRepository suggestionRepository;
 	
 	@Autowired
 	private  EventMapper eventMapper;
@@ -243,7 +248,7 @@ public class EventService implements IEventService {
 
 	
 	@Override
-	public Event updateEventWithSuggestionForCurrentUser(Map<String, String> event) {
+	public Boolean updateEventWithSuggestionForCurrentUser(Map<String, String> event) {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			Date dateSuggestion1 = formatter.parse(event.get("date1"));
@@ -251,12 +256,19 @@ public class EventService implements IEventService {
 			Integer eventId = Integer.parseInt(event.get("id"));
 			Integer taskId = Integer.parseInt(event.get("task"));
 			String email = event.get("email");
+			EventUserDestinationEntity eventUser = eventUserDestRepository.findByEventIdAndEmail(eventId, email);
+			SuggestionEntity suggestion1Entity = new SuggestionEntity("", "", dateSuggestion1, eventUser);
+			suggestionRepository.save(suggestion1Entity);
+			SuggestionEntity suggestion2Entity = new SuggestionEntity("", "", dateSuggestion2, eventUser);
+			suggestionRepository.save(suggestion2Entity);
+			
 
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
-		return null;
+		return true;
 	}
 
 	
@@ -270,6 +282,17 @@ public class EventService implements IEventService {
 		}
 		return childEvents;
 	}
+	
+	
+	@Override
+	public List<SuggestionEntity> loadSuggestionForCurrentUser(String user, String eventId) {
+		
+		EventUserDestinationEntity eventUser = eventUserDestRepository.findByEventIdAndEmail(Integer.parseInt(eventId), user);
+		List<SuggestionEntity> suggestions = suggestionRepository.findByEventUserDestinationId(eventUser.getId());
+		return suggestions;
+	}
+
+	
 	/*
 	
 	@Override
@@ -307,6 +330,7 @@ public class EventService implements IEventService {
 		}
 		return events;
 	}*/
+
 
 
 

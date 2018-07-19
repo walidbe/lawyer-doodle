@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pfe.ldb.core.protogest.event.Event;
 import com.pfe.ldb.core.protogest.event.EventGroup;
 import com.pfe.ldb.core.protogest.event.EventJson;
+import com.pfe.ldb.entity.SuggestionEntity;
 import com.pfe.ldb.event.controller.path.PathURI;
 import com.pfe.ldb.event.iservice.IEventService;
 
@@ -50,6 +51,14 @@ public class EventController {
 	public List<EventGroup> getEventsGroup() throws Exception {
 		return eventService.loadEventsGroup();
 	}
+	@CrossOrigin(origins = "http://localhost:3001")
+	@RequestMapping(method = RequestMethod.GET, value = PathURI.EVENT_SUGGESTION)
+	public List<SuggestionEntity> getSuggestionForCurrentUser(HttpServletRequest request) throws Exception {
+		
+		String user = request.getHeader("email");
+		String eventId = request.getHeader("eventId");
+		return eventService.loadSuggestionForCurrentUser(user,eventId);
+	}
 
 	@CrossOrigin(origins = "http://localhost:3001")
 	@RequestMapping(method = RequestMethod.POST, value = PathURI.EVENT)
@@ -61,7 +70,7 @@ public class EventController {
 	
 	@CrossOrigin(origins = "http://localhost:3001")
 	@RequestMapping(method = RequestMethod.POST, value = PathURI.EVENT_SUGGESTION)
-	public Event updateEventWithSuggestion(@RequestBody(required = true) final Map<String, String> event) throws Exception {
+	public Boolean updateEventWithSuggestion(@RequestBody(required = true) final Map<String, String> event) throws Exception {
 		
 		return eventService.updateEventWithSuggestionForCurrentUser(event);
 	}
