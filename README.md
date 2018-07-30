@@ -36,7 +36,7 @@
  * member-service
  * task-service
 
-# Cconfiguration base de données
+# Configuration base de données
 * Première étape : cliquez sur le bouton droit au microservice database-service, ensuite sélectionnez properties. Dans le champ text Path insérer /console. (voir image suivante) :
 
 ![capture99999](https://user-images.githubusercontent.com/14218094/43403269-a1b68120-93e2-11e8-976e-875a6bbaf375.PNG)
