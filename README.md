@@ -1,4 +1,4 @@
-#Application architecture
+## Application architecture
 # Event-Service: 
 * Ce service gère la création des évènements, l’affichage, la modification ainsi que la gestion
                   de conflit des évènements avec le calendrier de l’utilisateur.
