@@ -27,11 +27,11 @@
 
 # Ordre de démarrage
  Si vous être dans un profil local, vous n'aurez pas besoin de démarrer config-service, sinon c'est le 1er service qu'il faut démarrer.
- *registry-service
- *zuul-service
- *database-service
- *calendar-service
- *email-service
- *event-service
- *member-service
- *task-service
+ * registry-service
+ * zuul-service
+ * database-service
+ * calendar-service
+ * email-service
+ * event-service
+ * member-service
+ * task-service
