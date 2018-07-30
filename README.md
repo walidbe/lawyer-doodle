@@ -38,6 +38,12 @@
 
 # configuration base de données
 * Première étape : cliquez sur le bouton droit au microservice database-service, ensuite sélectionnez properties. Dans le champ text Path insérer /console. (voir image suivante) :
+
 ![capture99999](https://user-images.githubusercontent.com/14218094/43403269-a1b68120-93e2-11e8-976e-875a6bbaf375.PNG)
+
+* Double cliquez sur database-service, un popup devrait apparaitre sur votre interface, insérer la configuration suivante : 
+
+![dbcnf](https://user-images.githubusercontent.com/14218094/43403388-ecb36602-93e2-11e8-8697-a1c7b41889c3.PNG)
+
 
 
