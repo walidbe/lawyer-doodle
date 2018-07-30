@@ -8,6 +8,8 @@ import com.pfe.ldb.entity.AbstractEntity;
 import com.pfe.ldb.entity.MemberEntity;
 import com.pfe.ldb.member.imapper.IMapper;
 
+
+
 public class MemberMapper implements IMapper {
 
 	@Override

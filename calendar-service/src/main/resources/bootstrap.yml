@@ -7,17 +7,6 @@ spring:
     
 security:
   oauth2:
-    client:
-      clientId: 501550388440-2p29jsig4o1j3loj58rif8ejee50tqmu.apps.googleusercontent.com
-      clientSecret: DmQqtivHqyIxv-RYessJJ5K8
-      accessTokenUri: https://www.googleapis.com/oauth2/v4/token
-      userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
-      clientAuthenticationScheme: form
-      scope:
-        - openid
-        - email
-        - profile
-        - https://www.googleapis.com/auth/calendar
     resource:
       userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
       preferTokenInfo: true

@@ -1,6 +1,5 @@
----
 applications:
-  - name: event-service
+    name: event-service
     host: event-cloud-service
     memory: 512M
     services:

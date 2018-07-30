@@ -60,9 +60,10 @@ public class CalendarController {
 	Credential credential;
 	@Autowired
 	private ICalendarService calendarService;
-	@Value("${security.oauth2.client.clientId}")
+	
+	@Value("${google.client.client-id}")
 	private String clientId;
-	@Value("${security.oauth2.client.clientSecret}")
+	@Value("${google.client.client-secret}")
 	private String clientSecret;
 	private Set<Event> events = new HashSet<>();
 
