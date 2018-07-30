@@ -46,4 +46,8 @@
 ![dbcnf](https://user-images.githubusercontent.com/14218094/43403388-ecb36602-93e2-11e8-8697-a1c7b41889c3.PNG)
 
 
-
+# Configuration minimal :
+* Outil de développement : STS, IntelliJ.
+* Java 8.
+* Spring Framework.
+* Maven 3.2 et plus.
