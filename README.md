@@ -1,4 +1,4 @@
-# Application architecture
+# Architecture du système
 ## Event-Service: 
 * Ce service gère la création des évènements, l’affichage, la modification ainsi que la gestion
                   de conflit des évènements avec le calendrier de l’utilisateur.
@@ -22,3 +22,16 @@
 ## Service Discovery (Eureka) :
 * Eureka permet en général la découverte des autres microservices. En effet, il s’agit de la détection automatique des emplacements réseau des instances de chaque microservice, exemple : user-service, event-service, etc. Ces derniers doivent s’enregistrer au Service Registry et ce pour chaque microservice puisse communiquer avec un autre. Cet attribut est très commun dans les systèmes distribués où l’infrastructure est hétérogène et donc les communications se font par un middleware pour que tous les systèmes peuvent se comprendre.
 
+## Databaser-Service :
+* Pour le développement sous un profil local, nous utilisons H2 in memory database, plusieurs avantages sont associées à cette utilisation, portabilité et facilité, etc.
+
+# Ordre de démarrage
+ Si vous être dans un profil local, vous n'aurez pas besoin de démarrer config-service, sinon c'est le 1er service qu'il faut démarrer.
+ *registry-service
+ *zuul-service
+ *database-service
+ *calendar-service
+ *email-service
+ *event-service
+ *member-service
+ *task-service
