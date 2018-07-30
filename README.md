@@ -35,3 +35,5 @@
  * event-service
  * member-service
  * task-service
+
+## configuration base de données
