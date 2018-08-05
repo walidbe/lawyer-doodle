@@ -26,7 +26,7 @@
 * Pour le développement sous un profil local, nous utilisons H2 in memory database, plusieurs avantages sont associées à cette utilisation, portabilité et facilité, etc.
 
 # Ordre de démarrage
- Si vous être dans un profil local, vous n'aurez pas besoin de démarrer config-service, sinon c'est le 1er service qu'il faut démarrer.
+ Si vous êtes dans un profil local, vous n'aurez pas besoin de démarrer config-service, sinon c'est le 1er service qu'il faut démarrer.
  * registry-service
  * zuul-service
  * database-service
