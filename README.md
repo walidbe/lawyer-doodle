@@ -51,3 +51,21 @@
 * Java 8.
 * Spring Framework.
 * Maven 3.2 et plus.
+
+Installation Steps
+
+1. git clone backend
+2. install Spring Tool Set from https://spring.io/tools/sts
+3. Open STS workspace in protogest directory
+4. “File”, “Open Projects from File System”, “Directory”, choose protogest directory
+5. Run each service with “Run As”, choose “Spring Boot App”
+6. Verify that each service is running by scrolling the “BootDashboard”
+7. In “Boot Dashboard”, right-click Database-service, “Show Properties”, in “/Path” type “/console”
+8. Run “Database-services”
+9. Double-click on “Database-services” in “Boot Dashboard”
+10. If errors in “protogest-core” service, right-click the service, “Maven”, “Update Project”
+11. Continue running the rest of the services
+12. git clone front end
+13. Install Redux with the following command: “yarn add redux axios”
+14. Run frontend with: type “yarn” on the project folder, type “yarn start”
+
