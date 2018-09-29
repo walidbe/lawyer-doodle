@@ -53,19 +53,19 @@
 * Maven 3.2 et plus.
 
 Installation Steps
-
-1. git clone backend
-2. install Spring Tool Set from https://spring.io/tools/sts
-3. Open STS workspace in protogest directory
-4. “File”, “Open Projects from File System”, “Directory”, choose protogest directory
-5. Run each service with “Run As”, choose “Spring Boot App”
-6. Verify that each service is running by scrolling the “BootDashboard”
-7. In “Boot Dashboard”, right-click Database-service, “Show Properties”, in “/Path” type “/console”
-8. Run “Database-services”
-9. Double-click on “Database-services” in “Boot Dashboard”
-10. If errors in “protogest-core” service, right-click the service, “Maven”, “Update Project”
-11. Continue running the rest of the services
-12. git clone front end
-13. Install Redux with the following command: “yarn add redux axios”
-14. Run frontend with: type “yarn” on the project folder, type “yarn start”
-
+1. git clone backend 
+2. install Spring Tool Set from https://spring.io/tools/sts 
+3. Open STS workspace in protogest directory 
+4. In the menu, “File”, “Open Projects from File System”, “Directory”, choose protogest directory 
+5. If errors in “protogest-core” service, right-click the service, “Maven”, “Update Project” 
+6. Run each service with “Run As”, choose “Spring Boot App” in the specified order on this page stop before you reach Database-service
+7. Verify that each service is running by scrolling the “BootDashboard” 
+![registry-service_running](https://user-images.githubusercontent.com/15021743/46249766-b1628980-c3fc-11e8-8a23-ddaebbe6e93f.png)
+8. In “Boot Dashboard”, right-click Database-service, “Show Properties”, in “Path” field type “/console” 
+9. Run “Database-services” 
+10. Double-click on “Database-services” in “Boot Dashboard” to have a “Login” popup. Type all the correct information in the fields. The correct information are in this page: Configuration base de donnees
+11. Click on the “Connect” Button in the popup
+12. Continue running the rest of the services in the specified order
+13. git clone front end 
+14. Install Redux with the following command: “yarn add redux axios” 
+15. Run frontend with: type “yarn” on the project folder, type “yarn start” 
